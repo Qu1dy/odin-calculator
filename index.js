@@ -1,16 +1,14 @@
-const addButton = document.querySelector("#add");
-const substractButton = document.querySelector("#substract");
-const divideButton = document.querySelector("#divide");
-const multiplyButton = document.querySelector("#multiply");
-const numbers = document.querySelectorAll(".number");
+const buttons = document.querySelectorAll("button");
+const equationText = document.querySelector(".equation-text");
+
 
 const registerNumbers = () => {
-    numbers.forEach(number => {
-        number.addEventListener("click", manage);
+    buttons.forEach(button => {
+        button.addEventListener("click", () => manage(button));
     })
 }
 
-const manage = () => {
+const manage = (button) => {
     console.log("called");
 }
 
