@@ -20,9 +20,9 @@ const operate = () => {
     const split = display.innerText.split(method)
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return display.innerText = methods[method](a, b);
+    return display.innerText = methods[method](a, b).toFixed(4);
 }
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b).toFixed(4) === "Infinity" ? "ERROR!" : (a/b).toFixed(4), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b) === "Infinity" ? "ERROR!" : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const manage = (button) => {
     if(display.innerText === "ERROR!")
