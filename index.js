@@ -33,11 +33,11 @@ const manage = (button) => {
     else if(button.textContent === "=") {
         return operate();
     }
-    else if(button.id === "clear")
+    else if(button.textContent === "CLR")
     {
         return display.textContent = "";
     }
-    else if(button.id === "delete")
+    else if(button.textContent === "DEL")
     {
         if(display.textContent != "")
             display.textContent = display.textContent.slice(0, -1);
