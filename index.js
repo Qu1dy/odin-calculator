@@ -24,8 +24,12 @@ const operate = () => {
     const split = display.textContent.split(method);
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
+    if(isNaN(a) || isNaN(b))
+    {
+        return display.textContent = split.join("");
+    }
     const ans = methods[method](a, b);
-    return display.textContent = isNaN(ans) ? ans.slice(0, -1) : `${ans.toFixed(3).replace(/\.000$/, '')}`;
+    return display.textContent = isNaN(ans) ? "ERROR!" : `${ans.toFixed(3).replace(/\.000$/, '')}`;
 };
 
 
