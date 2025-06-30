@@ -43,6 +43,9 @@ const manage = (button) => {
             display.textContent = display.textContent.slice(0, -1);
         return;
     }
+    else if(button.textContent == "." && display.textContent.includes(".")) {
+        return;
+    }
     else if(button.classList.contains("operator") && getMethod())
     {
         operate();
