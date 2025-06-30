@@ -8,6 +8,10 @@ const registerButtons = () => {
     });
 }
 
+const registerKeyboardInputs = () => {
+    document.addEventListener("keydown", (e) => manage(e.key))
+}
+
 const getMethod = () =>
 {
     for(const method in methods)
@@ -20,18 +24,19 @@ const operate = () => {
     const split = display.textContent.split(method);
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return display.textContent = methods[method](a, b).toFixed(3).replace(/\.0$/, '');
+    return display.textContent = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
 }
 
 
 const manage = (button) => {
+    console.log(parseInt(button));
     if(display.textContent === "ERROR!")
         return display.textContent = button;
-    else if(button === "=")
+    else if(button === "=" || button === "Enter")
         return operate();
     else if(button === "CLR")
         return display.textContent = "";
-    else if(button === "DEL")
+    else if(button === "DEL" || button === "Backspace")
     {
         if(display.textContent != "")
             display.textContent = display.textContent.slice(0, -1);
@@ -41,7 +46,11 @@ const manage = (button) => {
         return;
     else if(button in methods && getMethod())
         operate();
-    display.textContent += button;
+    else if(button in methods || !isNaN(button))
+    {
+        display.textContent += button;
+    }
 }
 
 registerButtons();
+registerKeyboardInputs();
