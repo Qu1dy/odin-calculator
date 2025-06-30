@@ -5,7 +5,7 @@ const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR!" : (a/b)
 
 const registerButtons = () => {
     buttons.forEach(button => {
-        button.addEventListener("click", () => manage(button));
+        button.addEventListener("click", () => manage(button.textContent));
     })
 }
 
@@ -21,36 +21,36 @@ const operate = () => {
     const split = display.textContent.split(method)
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return display.textContent = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
+    return display.textContent = methods[method](a, b).toFixed(3).replace(/\.0$/, '');
 }
 
 
 const manage = (button) => {
     if(display.textContent === "ERROR!")
     {
-        return display.textContent = button.textContent;
+        return display.textContent = button;
     }
-    else if(button.textContent === "=") {
+    else if(button === "=") {
         return operate();
     }
-    else if(button.textContent === "CLR")
+    else if(button === "CLR")
     {
         return display.textContent = "";
     }
-    else if(button.textContent === "DEL")
+    else if(button === "DEL")
     {
         if(display.textContent != "")
             display.textContent = display.textContent.slice(0, -1);
         return;
     }
-    else if(button.textContent == "." && display.textContent.includes(".")) {
+    else if(button == "." && display.textContent.includes(".")) {
         return;
     }
-    else if(button.classList.contains("operator") && getMethod())
+    else if(button in methods && getMethod())
     {
         operate();
     }
-    display.textContent += button.textContent;
+    display.textContent += button;
 }
 
 registerButtons();
