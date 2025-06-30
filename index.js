@@ -24,7 +24,8 @@ const operate = () => {
     const split = display.textContent.split(method);
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return display.textContent = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
+    const ans = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
+    return display.textContent = isNaN(ans) ? "ERROR!" : ans;
 }
 
 
