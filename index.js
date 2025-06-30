@@ -36,6 +36,12 @@ const manage = (button) => {
     {
         return equationText.innerText = "";
     }
+    else if(button.id === "delete")
+    {
+        if(equationText.innerHTML != "")
+            equationText.innerText = equationText.innerText.slice(0, -1);
+        return;
+    }
     else if(button.classList.contains("operator") && getMethod())
     {
         operate();
