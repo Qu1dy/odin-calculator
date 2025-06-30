@@ -30,6 +30,7 @@ const operate = () => {
 
 
 const manage = (button) => {
+    console.log(display);
     if(display.textContent === "ERROR!")
     {
         if(!isNaN(button))
