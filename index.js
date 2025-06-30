@@ -6,17 +6,17 @@ const registerButtons = () => {
     buttons.forEach(button => {
         button.addEventListener("click", () => manage(button.textContent));
     });
-}
+};
 
 const registerKeyboardInputs = () => {
     document.addEventListener("keydown", (e) => manage(e.key))
-}
+};
 
-    const getMethod = () =>
+const getMethod = () =>
 {
     for(const method in methods)
         if(display.textContent.includes(method)) return method;
-}
+};
 
 const operate = () => {
     const method = getMethod();
@@ -26,7 +26,7 @@ const operate = () => {
     const b = parseFloat(split[1]);
     const ans = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
     return display.textContent = isNaN(ans) ? "ERROR!" : ans;
-}
+};
 
 
 const manage = (button) => {
@@ -53,7 +53,7 @@ const manage = (button) => {
         operate();
     else if(button in methods || !isNaN(button) || button === '.')
         display.textContent += button;
-}
+};
 
 registerButtons();
 registerKeyboardInputs();
