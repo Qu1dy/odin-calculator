@@ -20,7 +20,7 @@ const operate = () => {
     const split = display.innerText.split(method)
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return display.innerText = methods[method](a, b).toFixed(4);
+    return display.innerText = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
 }
 const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b) === "Infinity" ? "ERROR!" : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
