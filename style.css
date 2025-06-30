@@ -1,12 +1,9 @@
-* {
-    font-family: 'Digital-7 Mono', sans-serif;   
-}
-
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #F4EBD3;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .container {
@@ -21,14 +18,19 @@ body {
     box-shadow: 15px 15px 20px black;
 }
 
+.display-container {
+    display: flex;
+    align-items: center;
+}
+
 .display {
     margin: 32px 0 50px;
-    padding: 2px 5px;
+    padding: 5px;
     border: 3px solid #F4EBD3;
+    font-size: 60px;
     background-color: #98A1BC;
     width: 360px;
     height: 72px;
-    font-size: 72px;
     border-radius: 12px;
     box-shadow: 5px 5px 10px black;
     overflow-y: hidden;
@@ -51,7 +53,7 @@ button {
     font-size: 50px;    
     text-align: center;
     box-shadow: 4px 4px 5px black;
-
+    font-family: 'Digital-7 Mono', sans-serif;   
 }
 
 button:hover {

@@ -25,12 +25,12 @@ const operate = () => {
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
     const ans = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
-    return display.textContent = isNaN(ans) ? "ERROR!" : ans;
+    console.log(ans);
+    return display.textContent = isNaN(ans) ? "ERROR!" : `${ans}`;
 };
 
 
 const manage = (button) => {
-    console.log(display);
     if(display.textContent === "ERROR!")
     {
         if(!isNaN(button))
