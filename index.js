@@ -31,7 +31,12 @@ const operate = () => {
 
 const manage = (button) => {
     if(display.textContent === "ERROR!")
-        return display.textContent = button;
+    {
+        if(!isNaN(button))
+            return display.textContent = button;
+        else
+            return display.textContent = "";
+    }   
     else if(button === "=" || button === "Enter")
         return operate();
     else if(button === "CLR")
