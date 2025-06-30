@@ -22,10 +22,14 @@ const operate = () => {
     const b = parseFloat(split[1]);
     return equationText.innerText = methods[method](a, b);
 }
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b).toFixed(4), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b).toFixed(4) === "Infinity" ? "ERROR!" : (a/b).toFixed(4), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const manage = (button) => {
-    if(button.innerText === "=") {
+    if(equationText.innerText === "ERROR!")
+    {
+        return equationText.innerText = button.innerText;
+    }
+    else if(button.innerText === "=") {
         return operate();
     }
     else if(button.id === "clear")
