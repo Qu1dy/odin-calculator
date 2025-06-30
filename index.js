@@ -8,11 +8,8 @@ const registerNumbers = () => {
     })
 }
 
-const methods = {"+": (a, b) =>  a + b, "-": (a, b) => a - b, ":": (a,b) => a/b, "x": (a,b) => a*b};
-
-const manage = (button) => {
-    if(button.innerText === "=") {
-        for(let method in methods)
+const operate = () => {
+    for(let method in methods)
         {
             if(!equationText.innerText.includes(method)) continue;
             let split = equationText.innerText.split(method)
@@ -20,8 +17,14 @@ const manage = (button) => {
             let b = parseInt(split[1]);
             return equationText.innerText = methods[method](a, b);
         }
-    }
+}
+const methods = {"+": (a, b) =>  a + b, "-": (a, b) => a - b, ":": (a,b) => a/b, "x": (a,b) => a*b};
+
+const manage = (button) => {
     equationText.innerText += button.innerText;
+    if(button.innerText === "=") {
+        operate();
+    }
 }
 
 registerNumbers();
