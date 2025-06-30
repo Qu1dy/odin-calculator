@@ -52,7 +52,7 @@ const manage = (button) => {
         return;
     else if(button in methods && getMethod())
         operate();
-    else if(button in methods || !isNaN(button) || button === '.')
+    if(button in methods || !isNaN(button) || button === '.')
         display.textContent += button;
 };
 
