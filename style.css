@@ -14,7 +14,7 @@ body {
     width: 450px;
     height: 700px;
     border-radius: 30px;
-    box-shadow: 10px 10px 20px black;
+    box-shadow: 15px 15px 20px black;
 }
 
 .equation-text {
@@ -22,8 +22,10 @@ body {
     border: 3px solid #F4EBD3;
     background-color: #98A1BC;
     width: 360px;
-    height: 70px;
+    height: 55px;
     font-size: 42px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px black;
 }
 
 .buttons-container, .buttons {
@@ -40,7 +42,9 @@ button {
     width: 80px;
     height: 80px;
     border: none;
-    font-size: 32px;
+    font-size: 32px;    
+    box-shadow: 4px 4px 5px black;
+
 }
 
 button:hover {
