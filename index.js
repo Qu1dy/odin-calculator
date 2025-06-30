@@ -18,8 +18,8 @@ const operate = () => {
     const method = getMethod();
     if(!method) return;
     const split = equationText.innerText.split(method)
-    const a = parseInt(split[0]);
-    const b = parseInt(split[1]);
+    const a = parseFloat(split[0]);
+    const b = parseFloat(split[1]);
     return equationText.innerText = methods[method](a, b);
 }
 const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b).toFixed(4), "x": (a,b) => a*b, "-": (a, b) => a - b};
@@ -35,7 +35,6 @@ const manage = (button) => {
     else if(button.classList.contains("operator") && getMethod())
     {
         operate();
-
     }
     equationText.innerText += button.innerText;
 }
