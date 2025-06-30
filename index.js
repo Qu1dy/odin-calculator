@@ -18,18 +18,23 @@ const getMethod = () =>
         if(display.textContent.includes(method)) return method;
 };
 
-const operate = () => {
+const getOperands = () => {
     const method = getMethod();
     if(!method) return;
     const split = display.textContent.split(method);
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
+    return a,b;
+}
+
+const operate = () => {
+    const [a,b] = getOperands();
     if(isNaN(a) || isNaN(b))
     {
         return display.textContent = split.join("");
     }
     const ans = methods[method](a, b);
-    return display.textContent = isNaN(ans) ? "ERROR!" : `${parseFloat(ans.toFixed(3))}`;
+    return display.textContent = isNaN(ans) ? "ERROR!" : `${ans.toFixed(3).replace(/\.000$/, '')}`;
 };
 
 
@@ -59,8 +64,7 @@ const manage = (button) => {
         return;
     }
 
-    if(button === "." && display.textContent.includes(".")) 
-    
+    if(button === "." && display.textContent.includes(".") || display.textContent == "") 
         return;
     if(button in methods && getMethod())
     {
