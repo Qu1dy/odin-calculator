@@ -30,7 +30,6 @@ const operate = () => {
 
 
 const manage = (button) => {
-    console.log(button);
     if(display.textContent === "ERROR!")
         return display.textContent = button;
     else if(button === "=" || button === "Enter")
