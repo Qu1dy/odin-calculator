@@ -5,7 +5,7 @@ const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR!" : (a/b)
 const registerButtons = () => {
     buttons.forEach(button => {
         button.addEventListener("click", () => manage(button.textContent));
-    })
+    });
 }
 
 const getMethod = () =>
@@ -17,7 +17,7 @@ const getMethod = () =>
 const operate = () => {
     const method = getMethod();
     if(!method) return;
-    const split = display.textContent.split(method)
+    const split = display.textContent.split(method);
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
     return display.textContent = methods[method](a, b).toFixed(3).replace(/\.0$/, '');
