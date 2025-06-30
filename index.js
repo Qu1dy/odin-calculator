@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll("button");
-const equationText = document.querySelector(".equation-text");
+const display = document.querySelector(".equation-text");
 
 
 const registerNumbers = () => {
@@ -11,42 +11,42 @@ const registerNumbers = () => {
 const getMethod = () =>
 {
     for(let method in methods)
-        if(equationText.innerText.includes(method)) return method;
+        if(display.innerText.includes(method)) return method;
 }
 
 const operate = () => {
     const method = getMethod();
     if(!method) return;
-    const split = equationText.innerText.split(method)
+    const split = display.innerText.split(method)
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
-    return equationText.innerText = methods[method](a, b);
+    return display.innerText = methods[method](a, b);
 }
 const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b).toFixed(4) === "Infinity" ? "ERROR!" : (a/b).toFixed(4), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const manage = (button) => {
-    if(equationText.innerText === "ERROR!")
+    if(display.innerText === "ERROR!")
     {
-        return equationText.innerText = button.innerText;
+        return display.innerText = button.innerText;
     }
     else if(button.innerText === "=") {
         return operate();
     }
     else if(button.id === "clear")
     {
-        return equationText.innerText = "";
+        return display.innerText = "";
     }
     else if(button.id === "delete")
     {
-        if(equationText.innerHTML != "")
-            equationText.innerText = equationText.innerText.slice(0, -1);
+        if(display.innerHTML != "")
+            display.innerText = display.innerText.slice(0, -1);
         return;
     }
     else if(button.classList.contains("operator") && getMethod())
     {
         operate();
     }
-    equationText.innerText += button.innerText;
+    display.innerText += button.innerText;
 }
 
 registerNumbers();

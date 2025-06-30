@@ -17,8 +17,9 @@ body {
     box-shadow: 15px 15px 20px black;
 }
 
-.equation-text {
+.display {
     margin: 32px 0 50px;
+    padding-left: 0.5rem;
     border: 3px solid #F4EBD3;
     background-color: #98A1BC;
     width: 360px;
@@ -43,6 +44,7 @@ button {
     height: 80px;
     border: none;
     font-size: 32px;    
+    text-align: center;
     box-shadow: 4px 4px 5px black;
 
 }
@@ -62,7 +64,6 @@ button:hover {
 #clear, #delete {
     background-color: red;
 }
-
 
 #zero, #answer {
     width: 174px;
