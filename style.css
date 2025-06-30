@@ -50,3 +50,11 @@ button:hover {
 .operator {
     background-color: #DED3C4;
 }
+
+#clear {
+    background-color: red;
+}
+
+#answer {
+    align-self: flex-end;
+}

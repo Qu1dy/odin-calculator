@@ -18,7 +18,7 @@ const operate = () => {
             return equationText.innerText = methods[method](a, b);
     }
 }
-const methods = {"+": (a, b) =>  a + b, ":": (a,b) => a/b, "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => a/b, "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const manage = (button) => {
     if(button.innerText === "=") {
