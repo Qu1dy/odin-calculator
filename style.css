@@ -71,7 +71,7 @@ button:hover {
     background-color: red;
 }
 
-#zero, #answer {
+.wide {
     width: 174px;
 }
 
