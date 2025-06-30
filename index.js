@@ -59,8 +59,7 @@ const manage = (button) => {
         return;
     }
 
-    if(button === "." && display.textContent.includes(".")) 
-    
+    if(button === "." && (display.textContent.includes(".") || display.textContent == "")) 
         return;
     if(button in methods && getMethod())
     {
