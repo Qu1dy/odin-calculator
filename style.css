@@ -23,15 +23,13 @@ body {
 
 .display {
     margin: 32px 0 50px;
-    padding: 5px;
     border: 3px solid #F4EBD3;
     background-color: #98A1BC;
     width: 360px;
-    height: 55px;
+    height: 72px;
     font-size: 72px;
     border-radius: 12px;
     box-shadow: 5px 5px 10px black;
-    text-align: left;
     overflow-y: hidden;
 }
 
