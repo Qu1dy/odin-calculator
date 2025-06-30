@@ -10,7 +10,7 @@ const registerNumbers = () => {
 
 const getMethod = () =>
 {
-    for(let method in methods)
+    for(const method in methods)
         if(display.innerText.includes(method)) return method;
 }
 
@@ -22,7 +22,7 @@ const operate = () => {
     const b = parseFloat(split[1]);
     return display.innerText = methods[method](a, b).toFixed(3).replace(/\.000$/, '');
 }
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => (a/b) === "Infinity" ? "ERROR!" : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR!" : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const manage = (button) => {
     if(display.innerText === "ERROR!")
