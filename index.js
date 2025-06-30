@@ -29,7 +29,7 @@ const operate = () => {
         return display.textContent = split.join("");
     }
     const ans = methods[method](a, b);
-    return display.textContent = isNaN(ans) ? "ERROR!" : `${ans.toFixed(3).replace(/\.000$/, '')}`;
+    return display.textContent = isNaN(ans) ? "ERROR!" : `${parseFloat(ans.toFixed(3))}`;
 };
 
 
