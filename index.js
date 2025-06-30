@@ -32,31 +32,41 @@ const operate = () => {
 const handleError = (button) => {
     if(!isNaN(button))
         return display.textContent = button;
+    else
+        return display.textContent = "";
 }
 
 const manage = (button) => { 
     if(display.textContent === "ERROR!") 
     {
-        handleError(button);
+        return handleError(button);
     }
-    else if(button === "=" || button === "Enter")
+    
+    if(button === "=" || button === "Enter")
         return operate();
-    else if(button === "CLR")
+
+    if(button === "CLR")
         return display.textContent = "";
-    else if(button === "DEL" || button === "Backspace")
+
+    if(button === "DEL" || button === "Backspace")
     {
         if(display.textContent != "")
             display.textContent = display.textContent.slice(0, -1);
         return;
     }
-    else if(button === "." && display.textContent.includes(".")) 
+
+    if(button === "." && display.textContent.includes(".")) 
+    
         return;
-    else if(button in methods && getMethod())
+    if(button in methods && getMethod())
+    {
         operate();
         if(display.textContent === "ERROR!") 
         {
             return handleError(button);
         }
+    }
+
     if(button in methods || !isNaN(button) || button === '.')
     {
         display.textContent += button;
