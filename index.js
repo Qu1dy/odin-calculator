@@ -30,6 +30,7 @@ const operate = () => {
 
 
 const manage = (button) => {
+    console.log(button);
     if(display.textContent === "ERROR!")
         return display.textContent = button;
     else if(button === "=" || button === "Enter")
@@ -42,14 +43,12 @@ const manage = (button) => {
             display.textContent = display.textContent.slice(0, -1);
         return;
     }
-    else if(button == "." && display.textContent.includes(".")) 
+    else if(button === "." && display.textContent.includes(".")) 
         return;
     else if(button in methods && getMethod())
         operate();
-    else if(button in methods || !isNaN(button))
-    {
+    else if(button in methods || !isNaN(button) || button === '.')
         display.textContent += button;
-    }
 }
 
 registerButtons();
