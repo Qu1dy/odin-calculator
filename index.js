@@ -39,7 +39,7 @@ const manage = (button) => {
     }
     else if(button.id === "delete")
     {
-        if(display.innerHTML != "")
+        if(display.textContent != "")
             display.textContent = display.textContent.slice(0, -1);
         return;
     }
