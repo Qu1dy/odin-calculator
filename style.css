@@ -51,10 +51,11 @@ button:hover {
     background-color: #DED3C4;
 }
 
-#clear {
+#clear, #delete {
     background-color: red;
 }
 
-#answer {
-    align-self: flex-end;
+
+#zero, #answer {
+    width: 174px;
 }
