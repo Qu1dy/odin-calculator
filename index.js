@@ -29,14 +29,16 @@ const operate = () => {
 };
 
 
-const manage = (button) => {
-    if(display.textContent === "ERROR!")
+const handleError = (button) => {
+    if(!isNaN(button))
+        return display.textContent = button;
+}
+
+const manage = (button) => { 
+    if(display.textContent === "ERROR!") 
     {
-        if(!isNaN(button))
-            return display.textContent = button;
-        else
-            return display.textContent = "";
-    }   
+        handleError(button);
+    }
     else if(button === "=" || button === "Enter")
         return operate();
     else if(button === "CLR")
@@ -51,8 +53,14 @@ const manage = (button) => {
         return;
     else if(button in methods && getMethod())
         operate();
+        if(display.textContent === "ERROR!") 
+        {
+            return handleError(button);
+        }
     if(button in methods || !isNaN(button) || button === '.')
+    {
         display.textContent += button;
+    }
 };
 
 registerButtons();
