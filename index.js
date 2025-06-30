@@ -12,7 +12,7 @@ const registerKeyboardInputs = () => {
     document.addEventListener("keydown", (e) => manage(e.key))
 }
 
-const getMethod = () =>
+    const getMethod = () =>
 {
     for(const method in methods)
         if(display.textContent.includes(method)) return method;
