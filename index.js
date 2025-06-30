@@ -24,6 +24,10 @@ const manage = (button) => {
     if(button.innerText === "=") {
         operate();
     }
+    else if(button.id === "clear")
+    {
+        equationText.innerText = "";
+    }
     else
     {
         equationText.innerText += button.innerText;
