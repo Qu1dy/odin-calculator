@@ -68,3 +68,13 @@ button:hover {
 #zero, #answer {
     width: 174px;
 }
+
+.footer {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 24px;
+    font-weight: 800;
+}

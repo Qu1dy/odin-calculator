@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll("button");
-const display = document.querySelector(".equation-text");
+const display = document.querySelector(".display");
 
 
 const registerNumbers = () => {
