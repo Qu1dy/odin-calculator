@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const display = document.querySelector(".display");
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR!" : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const registerButtons = () => {
     buttons.forEach(button => {
@@ -25,7 +25,7 @@ const operate = () => {
     const a = parseFloat(split[0]);
     const b = parseFloat(split[1]);
     const ans = methods[method](a, b);
-    return display.textContent = isNaN(ans) ? "ERROR!" : `${ans.toFixed(3).replace(/\.000$/, '')}`;
+    return display.textContent = isNaN(ans) ? ans.slice(0, -1) : `${ans.toFixed(3).replace(/\.000$/, '')}`;
 };
 
 
@@ -41,7 +41,7 @@ const manage = (button) => {
     {
         return handleError(button);
     }
-    
+
     if(button === "=" || button === "Enter")
         return operate();
 
