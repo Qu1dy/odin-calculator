@@ -37,8 +37,8 @@ const handleMinuses = () => {
             ind++
         }
     })
-    const signA = numOfMinuses[0]%2 ? '+' : '-';
-    const signB = numOfMinuses[1]%2 ? '+' : '-';
+    const signA = numOfMinuses[0]%2===0 ? '+' : '-';
+    const signB = numOfMinuses[1]%2===0 ? '+' : '-';
     b = parseFloat(signB + nums[1]);
     a = parseFloat(signA + nums[0]);
     return [a,b];
