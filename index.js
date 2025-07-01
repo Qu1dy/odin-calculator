@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const display = document.querySelector(".display");
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"-": (a, b) => a + b, "+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b};
 
 const registerButtons = () => {
     buttons.forEach(button => {
@@ -12,18 +12,60 @@ const registerKeyboardInputs = () => {
     document.addEventListener("keydown", (e) => manage(e.key))
 };
 
-const getMethod = () =>
+const getMethod = (str) =>
 {
     for(const method in methods)
-        if(display.textContent.includes(method)) return method;
+        if(str.includes(method)) return method;
 };
 
+const handleMinuses = () => {
+    const numOfMinuses = [0, 0];
+    const nums = ["",""];
+    let ind = 0;
+    display.textContent.split("").forEach(item => {
+        if(item=='-')
+        {
+            numOfMinuses[ind]++;
+            if(nums[ind] != "") ind++;
+        }
+        else if(!(item in methods))
+        {   
+            nums[ind] += item;
+        }
+        else
+        {
+            ind++
+        }
+    })
+    const signA = numOfMinuses[0]%2 ? '+' : '-';
+    const signB = numOfMinuses[1]%2 ? '+' : '-';
+    b = parseFloat(signB + nums[1]);
+    a = parseFloat(signA + nums[0]);
+    return [a,b];
+}
+
+
+
 const operate = () => {
-    const method = getMethod();
+    let method = getMethod(display.textContent);
     if(!method) return;
     const split = display.textContent.split(method);
-    const a = parseFloat(split[0]);
-    const b = parseFloat(split[1]);
+    if(method === '-')
+    {
+        [a,b] = handleMinuses();
+        const displayWithoutMinuses = display.textContent.split("-").join("");
+        method = getMethod(displayWithoutMinuses);
+        if(!method)
+        {
+            method = "+";
+        }
+    }
+    else
+    {
+        a = parseFloat(split[0]);
+        b = parseFloat(split[1]);
+    }
+
     if(isNaN(a) || isNaN(b))
     {
         return display.textContent = split.join("");
@@ -61,7 +103,7 @@ const manage = (button) => {
 
     if(button === "." && (display.textContent.includes(".") || display.textContent == "")) 
         return;
-    if(button in methods && getMethod())
+    if(button in methods && getMethod(display.textContent) != '-' && button != '-')
     {
         operate();
         if(display.textContent === "ERROR!") 
