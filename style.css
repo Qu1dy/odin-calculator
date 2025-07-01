@@ -76,7 +76,7 @@ button:hover {
     width: 174px;
 }
 
-.footer {
+footer {
     margin-top: 20px;
     display: flex;
     align-items: center;
