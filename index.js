@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const display = document.querySelector(".display");
-const methods = {"-": (a, b) => a + b, "+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
 
 const registerButtons = () => {
     buttons.forEach(button => {
@@ -18,58 +18,26 @@ const getMethod = (str) =>
         if(str.includes(method)) return method;
 };
 
-const handleMinuses = () => {
-    const numOfMinuses = [0, 0];
-    const nums = ["",""];
-    let ind = 0;
-    display.textContent.split("").forEach(item => {
-        if(item=='-')
-        {
-            numOfMinuses[ind]++;
-            if(nums[ind] != "") ind++;
-        }
-        else if(!(item in methods))
-        {   
-            nums[ind] += item;
-        }
-        else
-        {
-            ind++
-        }
-    })
-    const signA = numOfMinuses[0]%2===0 ? '+' : '-';
-    const signB = numOfMinuses[1]%2===0 ? '+' : '-';
-    b = parseFloat(signB + nums[1]);
-    a = parseFloat(signA + nums[0]);
-    return [a,b];
+const countOfMinuses = (str) => str.split("-").length - 1;
+
+const getNumbers = (method) => {
+    const parts = display.textContent.split(/(\d+)/);
+    parts.forEach(part => {
+        if(countOfMinuses(part) > 0)
+            parts[parts.indexOf(part+1)] = countOfMinuses(part) % 2 === 0 ? part.replace(/-+/g, "") : part.replace(/-+/g, "-")
+    });
+    return [a,b, method];
 }
-
-
 
 const operate = () => {
     let method = getMethod(display.textContent);
+    let a,b;
     if(!method) return;
-    const split = display.textContent.split(method);
-    if(method === '-')
+    if(method == "-")
     {
-        [a,b] = handleMinuses();
-        const displayWithoutMinuses = display.textContent.split("-").join("");
-        method = getMethod(displayWithoutMinuses);
-        if(!method)
-        {
-            method = "+";
-        }
+        method = "+";
     }
-    else
-    {
-        a = parseFloat(split[0]);
-        b = parseFloat(split[1]);
-    }
-
-    if(isNaN(a) || isNaN(b))
-    {
-        return display.textContent = split.join("");
-    }
+    [a,b, method] = getNumbers(method);
     const ans = methods[method](a, b);
     return display.textContent = isNaN(ans) ? "ERROR!" : `${parseFloat(ans.toFixed(3))}`;
 };
@@ -103,7 +71,7 @@ const manage = (button) => {
 
     if(button === "." && (display.textContent.includes(".") || display.textContent == "")) 
         return;
-    if(button in methods && getMethod(display.textContent) != '-' && button != '-')
+    if(button in methods && getMethod(display.textContent) != '-' && button != "-")
     {
         operate();
         if(display.textContent === "ERROR!") 
