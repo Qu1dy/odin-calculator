@@ -31,6 +31,11 @@ const getNumbers = () => {
             const toAdd = countOfMinuses(part) % 2 === 0 ? part.replace(/-+/g, "") : part.replace(/-+/g, "-")
             parts[i+1] = toAdd + nextElement;
         }
+        else if(part == '.')
+        {
+            parts[i+1] = parts.slice(i-1, i+2).join('');
+            parts.splice(i-1, 2);
+        }
     }
     const filtered = parts.filter(part => !isNaN(part) && part != "");
     const [a,b] = filtered.map(el => parseFloat(el));
