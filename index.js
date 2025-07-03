@@ -22,9 +22,11 @@ const countOfMinuses = (str) => str.split("-").length - 1;
 
 const getNumbers = () => {
     const parts = display.textContent.split(/(\d+)/);
+    console.log(parts);
     for(let i = 0;i<parts.length-1;i++)
     {
-        const part = parts[i].replace(/[+*/]/g, "");
+        const part = parts[i].replace(/[+x/]/g, "");
+        if(!isNaN(part)) continue;
         if(countOfMinuses(part) > 0)
         {
             const nextElement = parts[i+1];
