@@ -1,6 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const display = document.querySelector(".display");
-const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b, "-": (a, b) => a - b};
+const methods = {"+": (a, b) =>  a + b, "/": (a,b) => b === 0 ? "ERROR! " : (a/b), "x": (a,b) => a*b, "-": (a, b) => a + b};
 
 const registerButtons = () => {
     buttons.forEach(button => {
@@ -12,32 +12,35 @@ const registerKeyboardInputs = () => {
     document.addEventListener("keydown", (e) => manage(e.key))
 };
 
-const getMethod = (str) =>
+const getMethod = () =>
 {
     for(const method in methods)
-        if(str.includes(method)) return method;
+        if(display.textContent.includes(method)) return method;
 };
 
 const countOfMinuses = (str) => str.split("-").length - 1;
 
-const getNumbers = (method) => {
+const getNumbers = () => {
     const parts = display.textContent.split(/(\d+)/);
-    parts.forEach(part => {
+    for(let i = 0;i<parts.length-1;i++)
+    {
+        const part = parts[i].replace(/[+*/]/g, "");
         if(countOfMinuses(part) > 0)
-            parts[parts.indexOf(part+1)] = countOfMinuses(part) % 2 === 0 ? part.replace(/-+/g, "") : part.replace(/-+/g, "-")
-    });
-    return [a,b, method];
+        {
+            const nextElement = parts[i+1];
+            const toAdd = countOfMinuses(part) % 2 === 0 ? part.replace(/-+/g, "") : part.replace(/-+/g, "-")
+            parts[i+1] = toAdd + nextElement;
+        }
+    }
+    const filtered = parts.filter(part => !isNaN(part) && part != "");
+    const [a,b] = filtered.map(el => parseFloat(el));
+    return [a,b];
 }
 
 const operate = () => {
-    let method = getMethod(display.textContent);
-    let a,b;
+    let method = getMethod();
     if(!method) return;
-    if(method == "-")
-    {
-        method = "+";
-    }
-    [a,b, method] = getNumbers(method);
+    const [a,b] = getNumbers();
     const ans = methods[method](a, b);
     return display.textContent = isNaN(ans) ? "ERROR!" : `${parseFloat(ans.toFixed(3))}`;
 };
@@ -71,7 +74,7 @@ const manage = (button) => {
 
     if(button === "." && (display.textContent.includes(".") || display.textContent == "")) 
         return;
-    if(button in methods && getMethod(display.textContent) != '-' && button != "-")
+    if(button in methods && getMethod() != '-')
     {
         operate();
         if(display.textContent === "ERROR!") 
