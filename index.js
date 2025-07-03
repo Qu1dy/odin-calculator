@@ -79,7 +79,7 @@ const manage = (button) => {
 
     if(button === "." && (display.textContent.includes(".") || display.textContent == "")) 
         return;
-    if(button in methods && getMethod() != '-')
+    if(button in methods && display.textContent.match(/\d+/g).length == 2)
     {
         operate();
         if(display.textContent === "ERROR!") 
@@ -87,7 +87,6 @@ const manage = (button) => {
             return handleError(button);
         }
     }
-
     if(button in methods || !isNaN(button) || button === '.')
     {
         display.textContent += button;
